@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Underground Racing | Roleplay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050108;
+      --bg-soft: rgba(12, 4, 20, 0.78);
+      --card: rgba(20, 7, 35, 0.72);
+      --border: rgba(187, 0, 255, 0.35);
+      --purple: #b400ff;
+      --purple-soft: #7a00ff;
+      --pink: #ff2bff;
+      --text: #ffffff;
+      --muted: #b7a8c8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(5,1,8,.72), rgba(5,1,8,.88)),
+        url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=2200&q=80') center/cover no-repeat;
+      z-index: -3;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(180,0,255,.2), transparent 40%), linear-gradient(90deg, rgba(255,0,255,.08), transparent, rgba(120,0,255,.08));
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6vw;
+      background: rgba(5, 1, 8, .72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.35rem;
+      line-height: .9;
+      text-transform: uppercase;
+      transform: rotate(-4deg);
+      text-shadow: 0 0 18px var(--purple);
+    }
+
+    .logo span { display: block; color: var(--pink); font-size: 1.65rem; }
+
+    nav { display: flex; gap: 26px; align-items: center; }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      opacity: .85;
+    }
+
+    nav a:hover { color: var(--pink); text-shadow: 0 0 12px var(--pink); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(135deg, var(--purple), var(--purple-soft));
+      color: #fff;
+      padding: 13px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: .08em;
+      box-shadow: 0 0 25px rgba(180,0,255,.75);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 0 38px rgba(255,43,255,.95); }
+    .btn.secondary { background: rgba(255,255,255,.07); box-shadow: none; }
+
+    section { padding: 86px 6vw; position: relative; }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--pink);
+      text-transform: uppercase;
+      letter-spacing: .42em;
+      font-weight: 700;
+      font-size: .9rem;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-family: 'Permanent Marker', cursive;
+      text-transform: uppercase;
+      font-size: clamp(4rem, 10vw, 10rem);
+      line-height: .78;
+      text-shadow: 0 0 20px rgba(255,255,255,.35);
+      transform: rotate(-4deg);
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--purple);
+      text-shadow: 0 0 16px var(--purple), 0 0 40px var(--pink);
+    }
+
+    .hero-sub {
+      margin: 36px auto 28px;
+      max-width: 760px;
+      font-size: 1.18rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+
+    .hero-actions { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+
+    .stats {
+      max-width: 980px;
+      margin: 65px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: rgba(10,2,16,.8);
+      border: 1px solid var(--border);
+      box-shadow: 0 0 28px rgba(180,0,255,.2);
+    }
+
+    .stat { padding: 24px 18px; border-right: 1px solid rgba(180,0,255,.25); }
+    .stat:last-child { border-right: 0; }
+    .stat strong { display:block; color:#fff; font-size: 1.7rem; }
+    .stat span { color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; }
+
+    .title {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+    .title h2 {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(2rem, 5vw, 4rem);
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+      text-shadow: 0 0 22px var(--purple);
+    }
+    .title p { color: var(--pink); text-transform: uppercase; letter-spacing: .28em; font-size: .8rem; margin-top: 8px; }
+
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 24px rgba(180,0,255,.15);
+    }
+    .card img { width: 100%; height: 170px; object-fit: cover; filter: saturate(1.2) contrast(1.1); }
+    .card-content { padding: 22px; }
+    .card h3 { text-transform: uppercase; font-size: 1.35rem; letter-spacing: .08em; margin-bottom: 8px; }
+    .card p { color: var(--muted); line-height: 1.6; }
+
+    .rules-wrap { display: grid; grid-template-columns: 280px 1fr; gap: 24px; max-width: 1180px; margin: 0 auto; }
+    .rule-menu, .rule-list { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px; padding: 22px; }
+    .rule-menu a { display:block; color:#fff; text-decoration:none; padding:14px 16px; border-bottom:1px solid rgba(180,0,255,.18); text-transform:uppercase; font-weight:700; }
+    .rule-menu a:hover { color: var(--pink); }
+    .rule-item { padding: 20px 0; border-bottom: 1px solid rgba(180,0,255,.18); }
+    .rule-item h3 { color:#fff; text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+    .rule-item p { color: var(--muted); line-height: 1.55; }
+
+    .info { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: center; }
+    .info-box { background: var(--bg-soft); border:1px solid var(--border); border-radius:8px; padding:34px; }
+    .info-box h3 { font-size:2rem; text-transform:uppercase; margin-bottom:18px; }
+    .info-box p, .info-box li { color:var(--muted); line-height:1.7; }
+    .info-box ul { margin-top:16px; padding-left:18px; }
+    .car-panel { min-height: 340px; border:1px solid var(--border); border-radius:8px; background: linear-gradient(rgba(5,1,8,.35), rgba(5,1,8,.78)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80') center/cover; box-shadow:0 0 35px rgba(180,0,255,.22); }
+
+    .join {
+      text-align:center;
+      background: linear-gradient(rgba(5,1,8,.62), rgba(5,1,8,.82)), url('https://images.unsplash.com/photo-1494522855154-9297ac14b55f?auto=format&fit=crop&w=2200&q=80') center/cover;
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+    }
+
+    footer { padding: 42px 6vw; text-align:center; color:var(--muted); background:rgba(0,0,0,.55); }
+
+    @media (max-width: 920px) {
+      nav { display:none; }
+      .stats, .grid, .rules-wrap, .info { grid-template-columns: 1fr; }
+      .stat { border-right: 0; border-bottom: 1px solid rgba(180,0,255,.25); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">Underground<span>Racing</span></div>
+    <nav>
+      <a href="#start">Startseite</a>
+      <a href="#regeln">Regelwerk</a>
+      <a href="#team">Team</a>
+      <a href="#infos">Informationen</a>
+      <a class="btn" href="#join">Jetzt Beitreten</a>
+    </nav>
+  </header>
+
+  <section id="start" class="hero">
+    <div>
+      <div class="eyebrow">FiveM Roleplay Server</div>
+      <h1>Underground<span>Racing</span></h1>
+      <p class="hero-sub">Tokio-Neon trifft Street-Racing Roleplay. Baue deinen Ruf auf, fahre illegale Rennen, tune dein Fahrzeug und werde Teil einer aktiven Racing-Community.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#join">Jetzt Beitreten</a>
+        <a class="btn secondary" href="#infos">Mehr Erfahren</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>400+</strong><span>Eigene Fahrzeuge</span></div>
+        <div class="stat"><strong>Real</strong><span>Racing System</span></div>
+        <div class="stat"><strong>15+</strong><span>Aktive Fraktionen</span></div>
+        <div class="stat"><strong>Real</strong><span>Economy</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="title"><h2>Was dich erwartet</h2><p>Racing · RP · Tuning · Crews</p></div>
+    <div class="grid">
+      <div class="card"><img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=900&q=80"><div class="card-content"><h3>Custom Cars</h3><p>Hunderte einzigartige Fahrzeuge mit individuellen Tuning-Möglichkeiten.</p></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80"><div class="card-content"><h3>Underground Racing</h3><p>Nimm an illegalen Rennen teil und werde zur Legende der Szene.</p></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1511300636408-a63a89df3482?auto=format&fit=crop&w=900&q=80"><div class="card-content"><h3>Immersives RP</h3><p>Erlebe echtes Roleplay, Aufbau, Konflikte und Community-Storys.</p></div></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=900&q=80"><div class="card-content"><h3>Tuning System</h3><p>Umfangreiche Tuning-Systeme für maximale Individualität.</p></div></div>
+    </div>
+  </section>
+
+  <section id="regeln">
+    <div class="title"><h2>Regelwerk</h2><p>Fairplay hat Priorität</p></div>
+    <div class="rules-wrap">
+      <div class="rule-menu">
+        <a href="#regeln">Allgemeine Regeln</a>
+        <a href="#regeln">RP Regeln</a>
+        <a href="#regeln">Fahrzeug Regeln</a>
+        <a href="#regeln">Fraktionsregeln</a>
+        <a href="#regeln">Voice Regeln</a>
+      </div>
+      <div class="rule-list">
+        <div class="rule-item"><h3>1. Respekt & Fairness</h3><p>Behandle jeden Spieler fair. Beleidigungen, Provokationen und toxisches Verhalten haben keinen Platz.</p></div>
+        <div class="rule-item"><h3>2. Cheating / Exploits</h3><p>Cheats, Bugs oder Exploits führen zum Ausschluss vom Projekt.</p></div>
+        <div class="rule-item"><h3>3. Realistisches Roleplay</h3><p>Jede Handlung muss nachvollziehbar und realistisch ausgespielt werden.</p></div>
+        <div class="rule-item"><h3>4. Keine Metagaming</h3><p>Informationen aus Discord, Streams oder OOC dürfen nicht im RP genutzt werden.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="title"><h2>Team</h2><p>Unser Team für euch</p></div>
+    <div class="grid">
+      <div class="card"><div class="card-content"><h3>Maxim</h3><p>Projektleitung</p></div></div>
+      <div class="card"><div class="card-content"><h3>Zenix</h3><p>Developer</p></div></div>
+      <div class="card"><div class="card-content"><h3>Hikari</h3><p>Support Leitung</p></div></div>
+      <div class="card"><div class="card-content"><h3>Night</h3><p>Moderator</p></div></div>
+    </div>
+  </section>
+
+  <section id="infos">
+    <div class="title"><h2>Informationen</h2><p>Alles was du wissen musst</p></div>
+    <div class="info">
+      <div class="info-box">
+        <h3>Was ist Underground Racing RP?</h3>
+        <p>Ein FiveM Roleplay Server mit Fokus auf JDM, Racing, Tuning, Crews und glaubwürdigem Roleplay.</p>
+        <ul>
+          <li>Eigene Fahrzeuge & Tuning</li>
+          <li>Reale Wirtschaft</li>
+          <li>Aktive Fraktionen & Gangs</li>
+          <li>Regelmäßige Events & Rennen</li>
+          <li>Optimiert für Spielspaß und Performance</li>
+        </ul>
+      </div>
+      <div class="car-panel"></div>
+    </div>
+  </section>
+
+  <section id="join" class="join">
+    <div class="title"><h2>Jetzt Beitreten</h2><p>Werde Teil der Underground Familie</p></div>
+    <a class="btn" href="https://discord.gg/DEIN-LINK" target="_blank">Discord Beitreten</a>
+  </section>
+
+  <footer>
+    © 2026 Underground Racing Roleplay · FiveM · Discord · TikTok · YouTube
+  </footer>
+</body>
+</html>
