@@ -191,8 +191,35 @@
 
     .rules-wrap { display: grid; grid-template-columns: 280px 1fr; gap: 24px; max-width: 1180px; margin: 0 auto; }
     .rule-menu, .rule-list { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px; padding: 22px; }
-    .rule-menu a { display:block; color:#fff; text-decoration:none; padding:14px 16px; border-bottom:1px solid rgba(180,0,255,.18); text-transform:uppercase; font-weight:700; }
-    .rule-menu a:hover { color: var(--pink); }
+    .rule-tab {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: white;
+      padding: 18px;
+      text-align: left;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(180,0,255,.2);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .rule-tab:hover,
+    .rule-tab.active {
+      color: #ff2bff;
+      background: rgba(180,0,255,.08);
+      text-shadow: 0 0 12px #ff2bff;
+    }
+
+    .rule-content {
+      display: none;
+    }
+
+    .rule-content.active {
+      display: block;
+    }
     .rule-item { padding: 20px 0; border-bottom: 1px solid rgba(180,0,255,.18); }
     .rule-item h3 { color:#fff; text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
     .rule-item p { color: var(--muted); line-height: 1.55; }
@@ -234,9 +261,9 @@
 
   <section id="start" class="hero">
     <div>
-      <div class="eyebrow">FiveM Racing | Roleplay Server</div>
+      <div class="eyebrow">FiveM Roleplay Server</div>
       <h1>Underground<span>Racing</span></h1>
-      <p class="hero-sub">Los Santos trifft auf Need for Speed mit Roleplay. Baue deinen Ruf auf, fahre illegale Rennen, tune dein Fahrzeug und werde Teil einer aktiven Racing-Community.</p>
+      <p class="hero-sub">Tokio-Neon trifft Street-Racing Roleplay. Baue deinen Ruf auf, fahre illegale Rennen, tune dein Fahrzeug und werde Teil einer aktiven Racing-Community.</p>
       <div class="hero-actions">
         <a class="btn" href="#join">Jetzt Beitreten</a>
         <a class="btn secondary" href="#infos">Mehr Erfahren</a>
@@ -261,27 +288,39 @@
   </section>
 
   <section id="regeln">
-    <div class="title"><h2>Regelwerk</h2><p>Fairplay hat Priorität</p></div>
-    <div class="rules-wrap">
-      <div class="rule-menu">
-        <a href="#regeln">Allgemeine Regeln</a>
-        
-        <a href="#regeln">RP Regeln</a>
-         
-        <a href="#regeln">Fahrzeug Regeln</a>
-       
-        <a href="#regeln">Fraktionsregeln</a>
-      
-        <a href="#regeln">Voice Regeln</a>
-      </div>
-      <div class="rule-list">
-        <div class="rule-item"><h3>1. Respekt & Fairness</h3><p>Behandle jeden Spieler fair. Beleidigungen, Provokationen und toxisches Verhalten haben keinen Platz.</p></div>
-        <div class="rule-item"><h3>2. Cheating / Exploits</h3><p>Cheats, Bugs oder Exploits führen zum Ausschluss vom Projekt.</p></div>
-        <div class="rule-item"><h3>3. Realistisches Roleplay</h3><p>Jede Handlung muss nachvollziehbar und realistisch ausgespielt werden.</p></div>
-        <div class="rule-item"><h3>4. Keine Metagaming</h3><p>Informationen aus Discord, Streams oder OOC dürfen nicht im RP genutzt werden.</p></div>
-      </div>
+    <div class="title">
+      <h2>Regelwerk</h2>
+      <p>Fairplay hat Priorität</p>
     </div>
-  </section>
+
+    <div class="rules-wrap">
+
+      <div class="rule-menu">
+        <button class="rule-tab active" onclick="showRules('allgemein', this)">
+          Allgemeine Regeln
+        </button>
+
+        <button class="rule-tab" onclick="showRules('rp', this)">
+          RP Regeln
+        </button>
+
+        <button class="rule-tab" onclick="showRules('fahrzeug', this)">
+          Fahrzeug Regeln
+        </button>
+
+        <button class="rule-tab" onclick="showRules('fraktion', this)">
+          Fraktionsregeln
+        </button>
+
+        <button class="rule-tab" onclick="showRules('voice', this)">
+          Voice Regeln
+        </button>
+      </div>
+
+      <div class="rule-list">
+
+        <div class="rule-content active" id="allgemein">
+          <div class="rule
 
   <section id="team">
     <div class="title"><h2>Team</h2><p>Unser Team für euch</p></div>
