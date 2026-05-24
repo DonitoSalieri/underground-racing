@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Underground Racing | Roleplay</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #050108;
@@ -61,15 +61,16 @@
     }
 
     .logo {
-      font-family: 'Permanent Marker', cursive;
-      font-size: 1.35rem;
-      line-height: .9;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      transform: rotate(-4deg);
-      text-shadow: 0 0 18px var(--purple);
+      text-shadow: 0 0 18px var(--purple), 0 0 34px var(--pink);
     }
 
-    .logo span { display: block; color: var(--pink); font-size: 1.65rem; }
+    .logo span { display: block; color: var(--pink); font-size: 1.35rem; letter-spacing: .14em; }
 
     nav { display: flex; gap: 26px; align-items: center; }
     nav a {
@@ -124,18 +125,27 @@
     }
 
     .hero h1 {
-      font-family: 'Permanent Marker', cursive;
+      font-family: 'Bebas Neue', sans-serif;
       text-transform: uppercase;
-      font-size: clamp(4rem, 10vw, 10rem);
-      line-height: .78;
-      text-shadow: 0 0 20px rgba(255,255,255,.35);
-      transform: rotate(-4deg);
+      font-size: clamp(5rem, 13vw, 13rem);
+      line-height: .82;
+      letter-spacing: .045em;
+      text-shadow:
+        0 0 10px rgba(255,255,255,.75),
+        0 0 24px #ff00ff,
+        0 0 60px #b400ff,
+        0 0 120px #7a00ff;
     }
 
     .hero h1 span {
       display: block;
       color: var(--purple);
-      text-shadow: 0 0 16px var(--purple), 0 0 40px var(--pink);
+      -webkit-text-stroke: 1px rgba(255,255,255,.35);
+      text-shadow:
+        0 0 12px #fff,
+        0 0 28px var(--purple),
+        0 0 70px var(--pink),
+        0 0 140px var(--purple-soft);
     }
 
     .hero-sub {
@@ -168,11 +178,12 @@
       margin-bottom: 44px;
     }
     .title h2 {
-      font-family: 'Permanent Marker', cursive;
+      font-family: 'Orbitron', sans-serif;
       font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
       text-transform: uppercase;
-      transform: rotate(-2deg);
-      text-shadow: 0 0 22px var(--purple);
+      letter-spacing: .08em;
+      text-shadow: 0 0 18px var(--purple), 0 0 42px var(--pink);
     }
     .title p { color: var(--pink); text-transform: uppercase; letter-spacing: .28em; font-size: .8rem; margin-top: 8px; }
 
